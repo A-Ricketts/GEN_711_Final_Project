@@ -4,7 +4,7 @@
 
 ## Mystery Bacterial Genome
 
-## By: 
+## Member 
 
 Andrew Ricketts
 
