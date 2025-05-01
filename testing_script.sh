@@ -3,5 +3,6 @@
 source activate genomics
 
 data=$1
-prevdir=$($data..)
-echo $prevdir
+altdata=$(ls $data)
+
+ls $data | grep -vo "_R*" | echo
