@@ -3,6 +3,8 @@
 source activate genomics
 
 data=$1
-altdata=$(ls $data)
 
-ls $data | grep -vo "_R*" | echo
+for item in $data*R1*
+  do
+   echo $item
+done
