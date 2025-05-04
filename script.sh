@@ -106,7 +106,7 @@ $buscoo="$data../busco_results"
 
 for item in $spadesout*contigs.fasta
  do
-  busco -i $item -m genome -o $buscoo -l bacteria
+  busco -i $item -m genome -o busco-results --out_path $buscoo -l bacteria
   sleep 5
 done
 
@@ -164,34 +164,47 @@ con_db="$data../contigs_db"
 
 for item in $spadesout*contigs.fasta
  do
-  makeblastdb -in $item -dbtype nucl -out $con_db
+  makeblastdb -in $item -dbtype nucl -out "$item"contigs_db
+  mv "$item"contigs_db $con_db
   sleep 5
 done
+
+sleep 5
 
 mkdir $data../vs_contig
 
 vs_contig="$data../vs_contig"
+d=1
 
-for item in $sixtS_seq
+for item in $sixtS_seq*
  do
-  blastn -query $item -db $con_db -out "$item"16S_vs_contigs_6.tsv -outfmt 6
+  cont_db=$(ls $con_db* | head -n"$d" | tail -n1)
+  blastn -query $item -db $cont_db -out "$item"16S_vs_contigs_6.tsv -outfmt 6
   mv "$item"16S_vs_contigs_6.tsv $vs_contigs
+  d=$(($d + 1))
   sleep 5
 done
 
+sleep 5
+
+mkdir $data../megablast_out
+
+mega_out="$data../megablast_out"
+
 for item in $spadesout*contigs.fasta
  do
-  blob_blast.sh $item
+  blob_blast.sh $item > "$item".megablast.out | mv "$item".megablast.out $mega_out
 done
+
+sleep 5
 
 #read mapping
 
 ###unsure of what this is
 
 mkdir $data../raw_mapped
-
 raw_map="$data../raw_mapped"
-reads=$(ls $trimmed_reads)
+reads=$(ls $trimmed_reads*)
 a=1
 
 for item in $spadesout*contigs.fasta
@@ -201,63 +214,115 @@ for item in $spadesout*contigs.fasta
   bwa index $item
   bwa mem -t 24 $item $forward $reverse > "$item"raw_mapped.sam
   mv "$item"raw_mapped.sam $raw_map
-  a=$($a - 1)
+  a=$(($a + 1))
   sleep 5
 done
+
+sleep 5
 
 mkdir $data../sorted_mapped
 
 sort_map="$data../sorted_mapped"
 
-for item in $raw_map
+for item in $raw_map*
  do
   samtools view -@ 24 -Sb $item | samtools sort -@ 24 -o "$item"sorted_mapped.bam
   mv "$item"sorted_mapped.bam $sort_map
   sleep 5
 done
 
+sleep 5
+
+mkdir $data../flagstat
 mkdir $data../bed_cov_out
 
+flag="$data../flagstat"
 bed_out="$data../bed_cov_out"
 
-for item in $sort_map
+for item in $sort_map*
  do
-  samtools flagstat $item
+  samtools flagstat $item > "$item"_flagstat.txt
+  mv "$item"_flagstat.txt $flag
   samtools index $item
   bedtools genomecov -ibam $item > "$item"coverage.out
   mv "$item"coverage.out $bed_out
   sleep 5
 done
 
+sleep 5
 
+mkdir $data../cov_table
 
+cov_table="$data../cov_table"
+b=1
 
+for item in $bed_out*
+ do
+  fasta=$(ls $spadesout*contigs.fasta | head -n"$b" | tail -n1)
+  gen_input_table.py --isbedfiles $fasta $item > "$item"coverage_table.tsv
+  b=$(($b + 1))
+  sleep 5
+done
 
+sleep 5
 
+#non-target contig removal
 
+mkdir $data../blob_out
 
+blob_out="$data../blob_out"
+c=1
 
+for item in $spadesout*contigs.fasta
+ do
+  sort_bam=$(ls $sort_map* | head -n"$c" | tail -n1)
+  mega=$(ls $mega_out* | head -n"$c" | tail -n1)
+  blobtools create -i $item -b $sort_bam -t $mega -o blob_out
+  mv blob_out* $blob_out
+  c=$(($c + 1))
+  sleep 5
+done
 
+sleep 5
 
+mkdir $data../blob_taxonomy
 
+blob_tax="$data../blob_taxonomy"
 
+for item in $blob_out
+ do
+  blobtools view -i $item -r all -o blob_taxonomy
+  mv *blob_taxonomy* $blob_tax
+  blobtools plot -i $item -r genus
+  sleep 5
+done
 
+sleep 5
 
+#filter genome assembly
 
+mkdir $data../kept_contigs
+mkdir $data../filtered_assembly
+mkdir $data../final_genome
 
+kept_con="$data../kept_contigs"
+filt_asm="$data../filtered_assembly"
+e=1
+final="$data../final_genome"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for item in $blob_tax
+ do
+  grep -v '#' $item | awk -F'\t' '$2 > 500'
+  grep -v '#' $item | awk -F'\t' '$2 < 500'
+  grep -v '#' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 5'
+  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > "$item"contigs_to_keep_len500_cov20.txt
+  assem=$(ls $spadesout*contigs.fasta | head -n"$e" | tail -n1)
+  filter_contigs_by_list.py $assem "$item"contigs_to_keep_len500_cov20.txt "$item"_filtered.fasta
+  e=$(($e +1))
+  grep -f "$item"contigs_to_keep_len500_cov20.txt $item | awk '{w = w + $2; e = e + $5 * $2;} END {print e/w}'
+  blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000 -query "$item"_filtered.fasta -subject UniVec  -outfmt 6 -out genome_vs_univec.6
+  mv "$item"contigs_to_keep_len500_cov20.txt $kept_con
+  mv "$item"_filtered.fasta $filt_asm
+  mv *genome_vs_univec.6* $final
+  sleep 5
+done
