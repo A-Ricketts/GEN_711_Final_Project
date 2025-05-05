@@ -92,7 +92,7 @@ done
 
 mkdir $data../quast_results
 
-$quast="$data../quast_results/"
+quast="$data../quast_results/"
 
 for item in $spadesout*contigs.fasta
  do
@@ -106,7 +106,7 @@ sleep 5
 
 mkdir $data../busco_results
 
-$buscoo="$data../busco_results/"
+buscoo="$data../busco_results/"
 
 for item in $spadesout*contigs.fasta
  do
@@ -120,7 +120,7 @@ sleep 5
 
 mkdir $data../prokka_output
 
-$prokka="$data../prokka_output/"
+prokka="$data../prokka_output/"
 
 for item in $spadesout*contigs.fasta
  do
@@ -171,8 +171,12 @@ con_db="$data../contigs_db/"
 for item in $spadesout*contigs.fasta
  do
   makeblastdb -in $item -dbtype nucl -out contigs_db
-  mv contigs_db "$item"_contigs_db
-  mv "$item"_contigs_db $con_db
+  for file in ./contigs_db*
+   do
+    mv $file "$item"_"$file"
+    mv "$item"_"$file" $con_db
+    sleep 2
+  done
   sleep 5
 done
 
