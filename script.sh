@@ -45,7 +45,7 @@ for item in $data*R1*
   sleep 5
 done
 
-mv "$data"trimmed-reads "$data"../trimmed-reads
+mv trimmed-reads "$data"../trimmed-reads
 
 sleep 5
 
