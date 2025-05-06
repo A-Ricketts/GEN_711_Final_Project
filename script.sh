@@ -29,7 +29,7 @@ mkdir $data../fastqc_raw-reads
 
 rawreads="$data../fastqc_raw-reads/"
 
-for item in $data*
+for item in $data*fastq*
  do
   fastqc $item -o $rawreads
 done
@@ -40,7 +40,7 @@ sleep 5
 
 for item in $data*R1*
  do
-  reverse=$(ls $data* | grep -A1 "$item" | tail -n1)
+  reverse=$(ls $data | grep -A1 "$item" | tail -n1)
   trim_scriptV2.sh $item $data$reverse
   sleep 5
 done
