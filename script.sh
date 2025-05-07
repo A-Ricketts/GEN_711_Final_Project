@@ -209,10 +209,10 @@ for item in $(ls $spadesout)
      do
       if [[ "$file" == *$item ]]
        then
-        makeblastdb -in $file -dbtype nucl -out "$item"_contigs_db -title "$file"_title_contigs_db
+        makeblastdb -in $file -dbtype nucl -out "$item"_contigs_db -title "$item"_title_contigs_db
         mv "$data$item"_contigs_db* $con_db
-        mv "$file"_title_contigs_db $con_db
       fi
+    done
   fi
   sleep 5
 done
@@ -226,7 +226,7 @@ d=1
 
 for item in $sixtS_seq*
  do
-  cont_db=$(ls $con_db* | grep "title_contigs_db" | head -n"$d" | tail -n1)
+  cont_db=$(ls $con_db* | grep "contigs_db.nsq" | head -n"$d" | tail -n1)
   blastn -query $item -db $cont_db -out 16S_vs_contigs_6.tsv -outfmt 6
   mv 16S_vs_contigs_6.tsv "$item"_16S_vs_contigs_6.tsv
   mv "$item"_16S_vs_contigs_6.tsv $vs_contigs
