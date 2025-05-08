@@ -2,200 +2,10 @@
 
 source activate genomics
 
-#estimate of coverage of reads
-
 data=$1
-
-touch $data../coverage.txt
-coverage="$data../coverage.txt"
-
-for item in $data*R1*
-  do
-   num_reads=$(zgrep -c "^@" $item)
-   bp=$(($num_reads * 250 * 2 / 7000000))
-   if [ $bp -ge 70 ]
-    then
-     echo $item has good coverage >> $coverage
-    else
-     echo $item does not have good coverage >> $coverage
-   fi
-done
-
-sleep 5
-
-#read quality
-
-mkdir $data../fastqc_raw-reads
-
-rawreads="$data../fastqc_raw-reads/"
-
-for item in $data*fastq*
- do
-  fastqc $item -o $rawreads
-done
-
-sleep 5
-
-#adpater and quality trimming
-
-for item in $data*R1*
- do
-  reverse=$(ls $data* | grep -A1 "$item" | tail -n1)
-  trim_scriptV2.sh $item $reverse
-  sleep 5
-done
-
-mv trimmed-reads "$data"../trimmed-reads
-
-sleep 5
-
-#genome assembly
-
-mkdir $data../spades_assembly
-
 spadesout="$data../spades_assembly/"
-trimmed_reads="$data../trimmed-reads/"
-
-for item in $(ls $trimmed_reads)
- do
-  if [[ "$item" == *R1* ]]
-   then
-    if [[ "$item" != *unpaired* ]]
-     then
-      reverse=$(ls $trimmed_reads | grep -A1 "$item" | head -n2 | tail -n1)
-      unpairedf=$(ls $trimmed_reads | grep "$item" | tail -n1)
-      unpairedb=$(ls $trimmed_reads | grep -A1 "$unpairedf" | tail -n1)
-      spades.py -1 $trimmed_reads$item -2 $trimmed_reads$reverse -s $trimmed_reads$unpairedf -s $trimmed_reads$unpairedb -o $spadesout -t 24
-      mv "$spadesout"contigs.fasta "$spadesout$item"_contigs.fasta
-      mv "$spadesout"spades.log "$spadesout$item"_spades.log
-      sleep 5
-    fi
-  fi
-done
-
-sleep 5
-
-#remove unnecessary genome files
-
-for item in $spadesout*
- do
-  if [[ "$item" != *contigs.fasta ]]
-   then
-    if [[ "$item" != *spades.log ]]
-     then
-      rm -r $item
-    fi
-  fi
-done
-
-#genome assessment
-
-mkdir $data../quast_results
-
-quast="$data../quast_results/"
-
-for item in $spadesout*contigs.fasta
- do
-  quast.py $item -o $quast
-  for file in $(ls $quast)
-   do
-    if [[ "$file" != input_* ]]
-     then
-      g=1
-      mv $quast$file $item$file
-      mv $item$file "$quast"input_$g/
-      g=$(($g + 1))
-    fi
-  done
-  sleep 5
-done
-
-sleep 5
-
-#busco
-
-mkdir "$data"../busco_results
-
-buscoo="$data../busco_results/"
-buscod="$data""busco-results/"
-
-for item in $(ls $spadesout)
- do
-  if [[ "$item" == *contigs.fasta ]]
-   then
-    for file in $spadesout*contigs.fasta
-     do
-      if [[ "$file" == *$item ]]
-       then
-        busco -i $file -m genome -o "$item"busco-results --out_path $data --force -l bacteria
-        mv "$buscod"/run_bacteria_odb10/full_table.tsv "$buscod$item"_full_table.tsv
-        mv "$buscod"run_bacteria_odb10/busco_sequences/single_copy_busco_sequences/ "$buscod$item"_single_copy_busco_sequences/
-        for items in $buscod
-         do
-	  if [[ "$items" != *$item* ]]
-	   then
-	    rm -r $items
-            rm $items
-	  fi
-        done
-        cp $buscod* $buscoo
-        rm -r $buscod
-        rm -r "$data"busco_downloads/
-      fi
-    done
-  fi
- sleep 5
-done
-
-sleep 5
-
-#genome annotation
-
-mkdir $data../prokka_output/
-
-prokka="$data../prokka_output/"
-
-for item in $spadesout*contigs.fasta
- do
-  prokka $item --outdir $prokka --force --cpus 24 --mincontiglen 200
-  sleep 5
-done
-
-sleep 5
-
-mkdir $data../protein_abundances
-
-protein_ab="$data../protein_abundances/"
-
-for item in $prokka*.gff
- do
-  grep -o "product=.*" $item | sed 's/product=//g' | sort | uniq -c | sort -nr > protein_abundances.txt
-  mv protein_abundances.txt "$item"_protein_abundances.txt
-  mv "$item"_protein_abundances.txt $protein_ab
-  sleep 5
-done
-
-sleep 5
-
-###organism identification
-
-#16S sequence
-
-mkdir $data../16S_sequences
-
 sixtS_seq="$data../16S_sequences/"
-
-for item in $prokka*.ffn
- do
-  extract_sequences "16S ribosomal RNA" $item > 16S_sequence.fasta
-  mv 16S_sequence.fasta "$item"_16S_sequence.fasta
-  mv "$item"_16S_sequence.fasta $sixtS_seq
-  sleep 5
-done
-
-sleep 5
-
-#BLAST
+trimmed_reads="$data../trimmed-reads/"
 
 mkdir $data../contigs_db
 
@@ -232,7 +42,6 @@ for item in $sixtS_seq*
   d=$(($d + 1))
   sleep 5
 done
-
 sleep 5
 
 mkdir $data../megablast_out
@@ -331,8 +140,6 @@ done
 
 sleep 5
 
-#non-target contig removal
-
 mkdir $data../blob_out
 
 blob_out="$data../blob_out/"
@@ -380,16 +187,17 @@ for item in $blob_tax
   grep -v '#' $item | awk -F'\t' '$2 > 500'
   grep -v '#' $item | awk -F'\t' '$2 < 500'
   grep -v '#' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 5'
-  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > "$item"contigs_to_keep_len500_cov20.txt
+  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > "$item"c>
   assem=$(ls $spadesout*contigs.fasta | head -n"$e" | tail -n1)
   filter_contigs_by_list.py $assem contigs_to_keep_len500_cov20.txt filtered.fasta
   mv contigs_to_keep_len500_cov20.txt "$assem"_contigs_to_keep_len500_cov20.txt
   mv filtered.fasta "$assem"_filtered.fasta
-  grep -f "$assem"_contigs_to_keep_len500_cov20.txt $item | awk '{w = w + $2; e = e + $5 * $2;} END {print e/w}'
-  blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000 -query "$assem"_filtered.fasta -subject UniVec -outfmt 6 -out genome_vs_univec.6
+  grep -f "$assem"_contigs_to_keep_len500_cov20.txt $item | awk '{w = w + $2; e = e + $5 * $2;} END {pri>
+  blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchs>
   mv "$assem"_contigs_to_keep_len500_cov20.txt $kept_con
   mv "$assem"_filtered.fasta $filt_asm
   mv *genome_vs_univec.6* $final
   e=$(($e +1))
   sleep 5
 done
+

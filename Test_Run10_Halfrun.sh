@@ -27,15 +27,20 @@ for item in $sixtS_seq*
 done
 sleep 5
 
-mkdir $data../megablast_out
+#mkdir $data../megablast_out
 
 mega_out="$data../megablast_out/"
+megablast="$data*megablast.out"
 
-for item in $spadesout*contigs.fasta
- do
-  blob_blast.sh $item
-  mv $data*megablast.out $mega_out
-done
+#for item in $spadesout*contigs.fasta
+# do
+ # blast-ncbi-nt.sh $item
+  #while [ -f "$megablast" ]
+   #do
+    #sleep 30
+  #done
+  #mv $data*megablast.out $mega_out
+#done
 
 sleep 5
 #read mapping
