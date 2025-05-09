@@ -1,0 +1,254 @@
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.50 seconds elapse.
+[bwa_index] Update BWT... 0.01 sec
+[bwa_index] Pack forward-only FASTA... 0.01 sec
+[bwa_index] Construct SA from BWT and Occ... 0.20 sec
+[main] Version: 0.7.18-r1243-dirty
+[main] CMD: bwa index /home/users/amr1230/Test_Run9/Data/../spades_assembly/01_S39_L001_R1_001.fastq.gz_contigs.fasta
+[main] Real time: 0.754 sec; CPU: 0.749 sec
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 980164 sequences (240000461 bp)...
+[M::process] read 978944 sequences (240000085 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (161, 448171, 1568, 164)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (225, 385, 800)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1950)
+[M::mem_pestat] mean and std.dev: (416.16, 316.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2525)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (293, 377, 489)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 881)
+[M::mem_pestat] mean and std.dev: (398.84, 145.87)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1077)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (828, 986, 5340)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14364)
+[M::mem_pestat] mean and std.dev: (2395.35, 2173.89)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18876)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (179, 321, 616)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1490)
+[M::mem_pestat] mean and std.dev: (317.33, 232.50)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1927)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 980164 reads in 86.811 CPU sec, 3.744 real sec
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (134, 445286, 1730, 160)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (226, 505, 1308)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3472)
+[M::mem_pestat] mean and std.dev: (620.63, 594.58)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 4554)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (299, 387, 506)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 920)
+[M::mem_pestat] mean and std.dev: (411.06, 153.90)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1127)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (788, 958, 5218)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14078)
+[M::mem_pestat] mean and std.dev: (2188.90, 2115.95)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18508)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (205, 339, 745)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1825)
+[M::mem_pestat] mean and std.dev: (367.20, 286.24)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2365)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 978944 reads in 82.827 CPU sec, 3.499 real sec
+[M::process] read 977926 sequences (240000444 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (154, 443491, 1880, 166)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (240, 441, 1432)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3816)
+[M::mem_pestat] mean and std.dev: (717.80, 861.84)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 5008)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (302, 393, 515)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 941)
+[M::mem_pestat] mean and std.dev: (417.81, 157.40)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1154)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (768, 932, 5143)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 13893)
+[M::mem_pestat] mean and std.dev: (2121.07, 2087.60)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18268)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (249, 441, 1399)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 3699)
+[M::mem_pestat] mean and std.dev: (782.26, 938.36)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 4849)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 977926 reads in 82.317 CPU sec, 3.433 real sec
+[M::process] read 976194 sequences (240000279 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (152, 443975, 1790, 153)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (234, 469, 931)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 2325)
+[M::mem_pestat] mean and std.dev: (503.80, 416.16)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 3022)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (305, 394, 510)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 920)
+[M::mem_pestat] mean and std.dev: (416.11, 151.51)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1125)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (786, 941, 5227)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14109)
+[M::mem_pestat] mean and std.dev: (2169.37, 2108.07)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18550)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (177, 355, 964)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 2538)
+[M::mem_pestat] mean and std.dev: (479.04, 513.74)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 3325)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 976194 reads in 83.551 CPU sec, 3.473 real sec
+[M::process] read 974358 sequences (240000300 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (138, 447526, 1526, 130)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (199, 352, 609)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1429)
+[M::mem_pestat] mean and std.dev: (317.94, 204.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1839)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (303, 384, 487)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 855)
+[M::mem_pestat] mean and std.dev: (402.38, 136.29)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1039)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (849, 989, 5405)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14517)
+[M::mem_pestat] mean and std.dev: (2497.04, 2236.37)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 19073)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (183, 317, 581)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1377)
+[M::mem_pestat] mean and std.dev: (346.44, 246.93)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1775)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 974358 reads in 81.629 CPU sec, 3.456 real sec
+[M::process] read 977876 sequences (240000274 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (150, 447073, 1578, 147)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (235, 467, 945)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 2365)
+[M::mem_pestat] mean and std.dev: (500.72, 421.15)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 3075)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (298, 382, 493)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 883)
+[M::mem_pestat] mean and std.dev: (403.59, 145.26)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1078)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (829, 971, 5310)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14272)
+[M::mem_pestat] mean and std.dev: (2294.02, 2159.76)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18753)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (209, 318, 880)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 2222)
+[M::mem_pestat] mean and std.dev: (427.32, 415.15)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2893)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 977876 reads in 82.406 CPU sec, 3.427 real sec
+[M::process] read 978324 sequences (240000054 bp)...
+[M::process] read 598630 sequences (146731697 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (141, 445556, 1685, 159)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (196, 401, 1067)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 2809)
+[M::mem_pestat] mean and std.dev: (496.21, 535.44)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 3680)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (300, 387, 506)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 918)
+[M::mem_pestat] mean and std.dev: (411.36, 152.90)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1124)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (793, 967, 5281)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 14257)
+[M::mem_pestat] mean and std.dev: (2245.88, 2139.20)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18745)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 383, 2170)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 6054)
+[M::mem_pestat] mean and std.dev: (924.93, 1310.06)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 7996)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 978324 reads in 80.959 CPU sec, 3.426 real sec
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (94, 272262, 1112, 91)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (240, 380, 798)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1914)
+[M::mem_pestat] mean and std.dev: (397.01, 273.17)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2472)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (299, 387, 507)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 923)
+[M::mem_pestat] mean and std.dev: (411.53, 154.30)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 1131)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (767, 932, 5076)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 13694)
+[M::mem_pestat] mean and std.dev: (2095.74, 2082.31)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 18003)
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (216, 329, 728)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 1752)
+[M::mem_pestat] mean and std.dev: (345.86, 259.39)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 2264)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 598630 reads in 50.355 CPU sec, 2.126 real sec
+[main] Version: 0.7.18-r1243-dirty
+[main] CMD: bwa mem -t 24 /home/users/amr1230/Test_Run9/Data/../spades_assembly/01_S39_L001_R1_001.fastq.gz_contigs.fasta /home/users/amr1230/Test_Run9/Data/../trimmed-reads/01_S39_L001_R1_001.fastq.gz /home/users/amr1230/Test_Run9/Data/../trimmed-reads/01_S39_L001_R2_001.fastq.gz
+[main] Real time: 31.825 sec; CPU: 636.809 sec
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libtinfow.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libtinfow.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+[bam_sort_core] merging from 0 files and 24 in-memory blocks...
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libtinfow.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libtinfow.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+samtools: /home/share/anaconda/envs/genomics/bin/../lib/libncursesw.so.6: no version information available (required by samtools)
+[+] Parsing FASTA - /home/users/amr1230/Test_Run9/Data/../spades_assembly/01_S39_L001_R1_001.fastq.gz_contigs.fasta
+[+] names.dmp/nodes.dmp not specified. Retrieving nodesDB from /home/share/anaconda/envs/genomics/lib/python3.10/site-packages/blobtools/../data/nodesDB.txt
+[%] :   0%|                                                                                                                                                                | 0.00/2.61M [00:00<?, ?it/s][%] :   3%|████▊                                                                                                                                                   | 83.5k/2.61M [00:00<00:03, 835kit/s][%] :   7%|██████████▎                                                                                                                                              | 176k/2.61M [00:00<00:02, 890kit/s][%] :  10%|███████████████▉                                                                                                                                         | 272k/2.61M [00:00<00:02, 921kit/s][%] :  14%|█████████████████████▎                                                                                                                                   | 364k/2.61M [00:00<00:02, 916kit/s][%] :  18%|██████████████████████████▉                                                                                                                              | 460k/2.61M [00:00<00:02, 929kit/s][%] :  21%|████████████████████████████████▍                                                                                                                        | 554k/2.61M [00:00<00:02, 934kit/s][%] :  25%|█████████████████████████████████████▉                                                                                                                   | 648k/2.61M [00:00<00:02, 936kit/s][%] :  28%|███████████████████████████████████████████▍                                                                                                             | 741k/2.61M [00:00<00:02, 910kit/s][%] :  32%|████████████████████████████████████████████████▉                                                                                                        | 834k/2.61M [00:00<00:01, 915kit/s][%] :  35%|██████████████████████████████████████████████████████▎                                                                                                  | 926k/2.61M [00:01<00:01, 916kit/s][%] :  39%|███████████████████████████████████████████████████████████▎                                                                                            | 1.02M/2.61M [00:01<00:01, 913kit/s][%] :  43%|████████████████████████████████████████████████████████████████▌                                                                                       | 1.11M/2.61M [00:01<00:01, 913kit/s][%] :  46%|█████████████████████████████████████████████████████████████████████▉                                                                                  | 1.20M/2.61M [00:01<00:01, 913kit/s][%] :  50%|███████████████████████████████████████████████████████████████████████████▎                                                                            | 1.29M/2.61M [00:01<00:01, 898kit/s][%] :  53%|████████████████████████████████████████████████████████████████████████████████▍                                                                       | 1.38M/2.61M [00:01<00:01, 897kit/s][%] :  56%|█████████████████████████████████████████████████████████████████████████████████████▋                                                                  | 1.47M/2.61M [00:01<00:01, 841kit/s][%] :  60%|██████████████████████████████████████████████████████████████████████████████████████████▉                                                             | 1.56M/2.61M [00:01<00:01, 860kit/s][%] :  63%|████████████████████████████████████████████████████████████████████████████████████████████████▏                                                       | 1.65M/2.61M [00:01<00:01, 871kit/s][%] :  67%|█████████████████████████████████████████████████████████████████████████████████████████████████████▌                                                  | 1.74M/2.61M [00:01<00:00, 882kit/s][%] :  70%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                             | 1.83M/2.61M [00:02<00:00, 883kit/s][%] :  74%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                                        | 1.92M/2.61M [00:02<00:00, 889kit/s][%] :  77%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                                  | 2.01M/2.61M [00:02<00:00, 896kit/s][%] :  81%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                             | 2.10M/2.61M [00:02<00:00, 896kit/s][%] :  84%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                        | 2.19M/2.61M [00:02<00:00, 895kit/s][%] :  87%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                   | 2.28M/2.61M [00:02<00:00, 890kit/s][%] :  91%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏             | 2.37M/2.61M [00:02<00:00, 880kit/s][%] :  94%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎        | 2.46M/2.61M [00:02<00:00, 878kit/s][%] :  98%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍   | 2.55M/2.61M [00:02<00:00, 879kit/s][%] : 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2.61M/2.61M [00:02<00:00, 894kit/s]
+[+] Parsing tax0 - /home/users/amr1230/Test_Run9/megablast_out/01_S39_L001_R1_001.fastq.gz_contigs.fasta.vs.nt.cul5.maxt10.1e5.megablast.out
+[+] Computing taxonomy using taxrule(s) bestsum
+[%] :   0%|                                                                                                                                                                | 0.00/2.33k [00:00<?, ?it/s][%] :  39%|████████████████████████████████████████████████████████████▎                                                                                            | 917/2.33k [00:00<00:00, 5.93kit/s][%] : 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2.33k/2.33k [00:00<00:00, 13.2kit/s]
+[+] Parsing bam0 - /home/users/amr1230/Test_Run9/sorted_mapped/01_S39_L001_R1_001.fastq.gz_contigs.fasta_sorted_mapped.bam
+[+] -> 100.00 (2326/2326) of sequences have reads aligned to them.
+[+] -> 99.69 (7548946/7572238) of reads are mapped.
+[%] :   0%|                                                                                                                                                                | 0.00/2.33k [00:00<?, ?it/s][%] :   5%|███████▋                                                                                                                                                 | 116/2.33k [00:00<00:01, 1.16kit/s][%] :  10%|███████████████▍                                                                                                                                           | 232/2.33k [00:01<00:15, 139it/s][%] :  15%|███████████████████████                                                                                                                                    | 347/2.33k [00:01<00:08, 231it/s][%] :  18%|████████████████████████████▌                                                                                                                              | 429/2.33k [00:02<00:09, 201it/s][%] :  23%|████████████████████████████████████▏                                                                                                                      | 543/2.33k [00:02<00:06, 295it/s][%] :  27%|██████████████████████████████████████████                                                                                                                 | 632/2.33k [00:02<00:04, 369it/s][%] :  31%|███████████████████████████████████████████████▌                                                                                                           | 713/2.33k [00:02<00:05, 271it/s][%] :  36%|███████████████████████████████████████████████████████▏                                                                                                   | 829/2.33k [00:02<00:03, 376it/s][%] :  40%|█████████████████████████████████████████████████████████████▊                                                                                             | 928/2.33k [00:03<00:03, 367it/s][%] :  44%|████████████████████████████████████████████████████████████████████                                                                                     | 1.03k/2.33k [00:03<00:03, 367it/s][%] :  49%|███████████████████████████████████████████████████████████████████████████▋                                                                             | 1.15k/2.33k [00:03<00:02, 475it/s][%] :  53%|█████████████████████████████████████████████████████████████████████████████████                                                                        | 1.23k/2.33k [00:03<00:02, 394it/s][%] :  58%|████████████████████████████████████████████████████████████████████████████████████████▏                                                                | 1.34k/2.33k [00:04<00:04, 235it/s][%] :  62%|███████████████████████████████████████████████████████████████████████████████████████████████▌                                                         | 1.45k/2.33k [00:04<00:02, 298it/s][%] :  65%|███████████████████████████████████████████████████████████████████████████████████████████████████                                                      | 1.51k/2.33k [00:05<00:03, 266it/s][%] :  70%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▌                                              | 1.62k/2.33k [00:05<00:01, 365it/s][%] :  75%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                                      | 1.74k/2.33k [00:05<00:01, 476it/s][%] :  78%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                 | 1.82k/2.33k [00:06<00:02, 190it/s][%] :  81%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                             | 1.87k/2.33k [00:07<00:03, 129it/s][%] :  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                      | 1.99k/2.33k [00:07<00:01, 191it/s][%] :  88%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                  | 2.05k/2.33k [00:07<00:01, 217it/s][%] :  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏            | 2.13k/2.33k [00:07<00:00, 272it/s][%] :  97%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋     | 2.25k/2.33k [00:08<00:00, 379it/s][%] : 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊| 2.32k/2.33k [00:08<00:00, 230it/s][%] : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2.33k/2.33k [00:08<00:00, 266it/s]
+[+] Generating data for view
+[%] :   0%|                                                                                                                                                                | 0.00/2.33k [00:00<?, ?it/s][%] : 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2.33k/2.33k [00:00<00:00, 740kit/s]
+[+] 	Writing blob_out.01_S39_L001_R1_001.fastq.gz_contigs.fasta_sorted_mapped.bam.cov
+[+] Generating BlobDB and writing to file blob_out.blobDB.json
+[ERROR:0]	: File /home/users/amr1230/Test_Run9/Data/../blob_out/ does not exist.
+mv: cannot stat '*blob_taxonomy*': No such file or directory
+[+] Reading BlobDB /home/users/amr1230/Test_Run9/Data/../blob_out/
+[ERROR:0]	: File /home/users/amr1230/Test_Run9/Data/../blob_out/ does not exist.
+/home/users/amr1230/Final_Project/GEN_711_Final_Project/Test_Run9_Halfrun.sh: line 137: syntax error near unexpected token `newline'
+/home/users/amr1230/Final_Project/GEN_711_Final_Project/Test_Run9_Halfrun.sh: line 137: `  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > "$item"c>'

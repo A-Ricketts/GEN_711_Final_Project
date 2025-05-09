@@ -117,7 +117,6 @@ sleep 5
 mkdir "$data"../busco_results
 
 buscoo="$data../busco_results/"
-buscod="$data""busco-results/"
 
 for item in $(ls $spadesout)
  do
@@ -127,7 +126,8 @@ for item in $(ls $spadesout)
      do
       if [[ "$file" == *$item ]]
        then
-        busco -i $file -m genome -o "$item"busco-results --out_path $data --force -l bacteria
+        busco -i $file -m genome -o "$item"_busco-results --out_path $data --force -l bacteria
+	buscod="$data$item""_busco-results/"
         mv "$buscod"/run_bacteria_odb10/full_table.tsv "$buscod$item"_full_table.tsv
         mv "$buscod"run_bacteria_odb10/busco_sequences/single_copy_busco_sequences/ "$buscod$item"_single_copy_busco_sequences/
         for items in $buscod
@@ -209,6 +209,7 @@ for item in $(ls $spadesout)
      do
       if [[ "$file" == *$item ]]
        then
+	mkdir $con_db$item
         makeblastdb -in $file -dbtype nucl -out "$con_db$item"/"$item"_contigs_db
       fi
     done
@@ -225,10 +226,11 @@ d=1
 
 for item in $sixtS_seq*
  do
-  cont_db=$(ls $con_db* | head -n"$d" | tail -n1)
-  blastn -db "$cont_db" -query "$item" -outfmt 6 -out 16S_vs_contigs_6.tsv
-  mv 16S_vs_contigs_6.tsv "$item"_16S_vs_contigs_6.tsv
-  mv "$item"_16S_vs_contigs_6.tsv $vs_contigs
+  cont_db=$(realpath $con_db* | head -n"$d" | tail -n1))
+  cona_db=$(ls $con_db | head -n"$d" | tail -n1)
+  blastn -db "$cont_db"/"$cona_db"_contigs_db -query "$item" -outfmt 6 -out 16S_vs_contigs_6.tsv
+  mv 16S_vs_contigs_6.tsv "$cona_db"_16S_vs_contigs_6.tsv
+  mv "$cona_db"_16S_vs_contigs_6.tsv $vs_contig
   d=$(($d + 1))
   sleep 5
 done
@@ -242,7 +244,7 @@ mega_out="$data../megablast_out/"
 for item in $spadesout*contigs.fasta
  do
   blast-ncbi-nt.sh $item
-  while [ -f "megablast" ]
+  while [ ! -f *megablast.out ]
    do
     sleep 30
   done
@@ -255,13 +257,12 @@ sleep 5
 
 mkdir $data../raw_mapped
 raw_map="$data../raw_mapped/"
-#reads=$(ls $trimmed_reads*)
 a=1
 
 for item in $spadesout*contigs.fasta
  do
-  forward=$(grep "R1" $trimmed_reads* | grep -v "unpaired" | head -n"$a" | tail -n1)
-  reverse=$(grep "R2" $trimmed_reads* | grep -v "unpaired" | head -n"$a" | tail -n1)
+  forward=$(ls $trimmed_reads* | grep "R1" | grep -v "unpaired" | head -n"$a" | tail -n1)
+  reverse=$(ls $trimmed_reads* | grep "R2" | grep -v "unpaired" | head -n"$a" | tail -n1)
   bwa index $item
   bwa mem -t 24 $item $forward $reverse > raw_mapped.sam
   j=1
@@ -298,7 +299,7 @@ mkdir $data../bed_cov_out
 flag="$data../flagstat/"
 bed_out="$data../bed_cov_out/"
 
-for item in $sort_map*
+for item in $sort_map*bam
  do
   samtools flagstat $item > "$item"_flagstat.txt
   mv "$item"_flagstat.txt $flag
@@ -322,7 +323,7 @@ b=1
 for item in $bed_out*
  do
   fasta=$(ls $spadesout*contigs.fasta | head -n"$b" | tail -n1)
-  gen_input_table.py --isbedfiles $fasta $item > coverage_table.tsv
+  /tmp/genome_back/gen_input_table.py --isbedfiles $fasta $item > coverage_table.tsv
   mv coverage_table.tsv "$fasta"_coverage_table.tsv
   mv "$fasta"_coverage_table.tsv $cov_table
   b=$(($b + 1))
@@ -343,7 +344,11 @@ for item in $spadesout*contigs.fasta
   sort_bam=$(ls $sort_map* | head -n"$c" | tail -n1)
   mega=$(ls $mega_out* | head -n"$c" | tail -n1)
   blobtools create -i $item -b $sort_bam -t $mega -o blob_out
-  mv blob_out* $blob_out
+  for file in $data*blob_out*
+   do
+    mv $file $item$file
+    mv $item$file $blob_out
+  done
   c=$(($c + 1))
   sleep 5
 done
@@ -354,10 +359,13 @@ mkdir $data../blob_taxonomy
 
 blob_tax="$data../blob_taxonomy/"
 
-for item in $blob_out
+for item in $blob_out*json
  do
   blobtools view -i $item -r all -o blob_taxonomy
-  mv *blob_taxonomy* $blob_tax
+  m=1
+  fasta=$(ls $spadesout*contigs.fasta | head -n"$m" | tail -n1)
+  mv blob_taxonomy.blob_out.blobDB.table.txt "$fasta"_blob_taxonomy.blob_out.blobDB.table.txt
+  mv "$fasta"_blob_taxonomy.blob_out.blobDB.table.txt $blob_tax
   blobtools plot -i $item -r genus
   sleep 5
 done
@@ -374,19 +382,19 @@ kept_con="$data../kept_contigs/"
 filt_asm="$data../filtered_assembly/"
 e=1
 final="$data../final_genome/"
+univec="/home/users/amr1230/Final_Project/GEN_711_Final_Project/Univec/UniVec"
 
-for item in $blob_tax
+for item in $blob_tax*
  do
   grep -v '#' $item | awk -F'\t' '$2 > 500'
   grep -v '#' $item | awk -F'\t' '$2 < 500'
   grep -v '#' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 5'
-  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > "$item"contigs_to_keep_len500_cov20.txt
+  grep -v '##' $item | awk -F'\t' '$2 > 500' | awk -F'\t' '$5 > 20' | awk -F'\t' '{print $1}' > contigs_to_keep_len500_cov20.txt
   assem=$(ls $spadesout*contigs.fasta | head -n"$e" | tail -n1)
-  filter_contigs_by_list.py $assem contigs_to_keep_len500_cov20.txt filtered.fasta
   mv contigs_to_keep_len500_cov20.txt "$assem"_contigs_to_keep_len500_cov20.txt
-  mv filtered.fasta "$assem"_filtered.fasta
+  filter_contigs_by_list.py $assem "$assem"_contigs_to_keep_len500_cov20.txt "$assem"_filtered.fasta
   grep -f "$assem"_contigs_to_keep_len500_cov20.txt $item | awk '{w = w + $2; e = e + $5 * $2;} END {print e/w}'
-  blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000 -query "$assem"_filtered.fasta -subject UniVec -outfmt 6 -out genome_vs_univec.6
+  blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000 -query "$assem"_filtered.fasta -subject $univec -outfmt 6 -out genome_vs_univec.6
   mv "$assem"_contigs_to_keep_len500_cov20.txt $kept_con
   mv "$assem"_filtered.fasta $filt_asm
   mv *genome_vs_univec.6* $final
