@@ -158,6 +158,8 @@ prokka="$data../prokka_output/"
 for item in $spadesout*contigs.fasta
  do
   prokka $item --outdir $prokka --force --cpus 24 --mincontiglen 200
+  mv "$prokka"PROKKA* mv "$item"PROKKA*
+  mv "$item"PROKKA* $prokka
   sleep 5
 done
 
@@ -226,7 +228,7 @@ d=1
 
 for item in $sixtS_seq*
  do
-  cont_db=$(realpath $con_db* | head -n"$d" | tail -n1))
+  cont_db=$(realpath $con_db* | head -n"$d" | tail -n1)
   cona_db=$(ls $con_db | head -n"$d" | tail -n1)
   blastn -db "$cont_db"/"$cona_db"_contigs_db -query "$item" -outfmt 6 -out 16S_vs_contigs_6.tsv
   mv 16S_vs_contigs_6.tsv "$cona_db"_16S_vs_contigs_6.tsv
