@@ -32,7 +32,7 @@ makeblastdb is a program which creates a local database of seqeunce data to quic
 #### Local BLAST
 One option for the blastn program is one against the local database. A gene or RNA seqeunce in a fasta file can be provided into the program which will compare the provided sequence with that of other organisms in the database. The output type must be provided, here a tsv file was used. Likely organism IDs are provided in the output.
 #### Entire Assembly BLAST
-The authors of the tutorial provided the blob_blast.sh program which BLAST's the entire genome against the local database and prepares a file which can later be used in the blob tools program. The input is the full genome fasta file and outputs a megablast.out file. 
+The authors of the tutorial provided the blast-ncbi-nt.sh program which BLAST's the entire genome against the local database and prepares a file which can later be used in the blob tools program. The input is the full genome fasta file and outputs a megablast.out file. 
 ### BWA and Samtools
 BWA is a read mapping program, meaning reads are aligned to a given genome assembly and analyses the amount of reads (depth) at each position. The input is the reference genome assembly, here it was the assembled genomes, and the trimmed forward and reverse reads. The output is a sam file which is then inputted into samtools to be converted into a bam file, a binary version of a sam file. 
 ### Blobtools
