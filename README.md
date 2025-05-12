@@ -41,11 +41,16 @@ Blobtools is a group of mutliple programs which can help visualize different par
 filter_contigs_by_list.py was a program provided by the authors which filters and gets rid of contigs which don't fit set criteria for the genome. Grep is used to create a list of contigs to keep from one of the blobtools files in a new txt file. The genome fasta file and the txt file are provided into the program to create a new fasta file with only the contigs kept. 
 ### UniVec BLAST 
 UniVec is a database of DNA sequences of various vectors. blastn takes the filtered fasta file and compares it to the UniVec database to check for contamination. The ouptut is a .6 file. 
-
 ## Findings
 
 ## References
-Alla Mikheenko, Andrey Prjibelski, Vladislav Saveliev, Dmitry Antipov, Alexey Gurevich, Versatile genome assembly evaluation with QUAST-LG, Bioinformatics (2018) 34 (13): i142-i150. doi: 10.1093/bioinformatics/bty266
-Andrews, S. (2010). FastQC:  A Quality Control Tool for High Throughput Sequence Data
-Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: A flexible trimmer for Illumina Sequence Data. Bioinformatics, btu170.
-Prjibelski, A., Antipov, D., Meleshko, D., Lapidus, A., & Korobeynikov, A. (2020). Using SPAdes de novo assembler. Current Protocols in Bioinformatics, 70, e102. doi: 10.1002/cpbi.102
+Andrews, S. (2010).  Quality Control Tool for High Throughput Sequence Data. Babraham Bioinformatics - FastQC a quality control tool for high throughput sequence data. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ 
+Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: A flexible trimmer for Illumina sequence data. Bioinformatics, 30(15), 2114–2120. https://doi.org/10.1093/bioinformatics/btu170 
+Camacho, C. (2024, June 25). Blast+ Release notes. BLAST® Help [Internet]. https://www.ncbi.nlm.nih.gov/books/NBK131777/ 
+Danecek, P., Bonfield, J. K., Liddle, J., Marshall, J., Ohan, V., Pollard, M. O., Whitwham, A., Keane, T., McCarthy, S. A., Davies, R. M., & Li, H. (2021). Twelve years of SAMtools and BCFtools. GigaScience, 10(2). https://doi.org/10.1093/gigascience/giab008 
+Laetsch, D. R., & Blaxter, M. L. (2017). Blobtools: Interrogation of genome assemblies. F1000Research, 6, 1287. https://doi.org/10.12688/f1000research.12232.1 
+Li, H., & Durbin, R. (2010). Fast and accurate long-read alignment with Burrows–Wheeler transform. Bioinformatics, 26(5), 589–595. https://doi.org/10.1093/bioinformatics/btp698 
+Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). Busco update: Novel and streamlined workflows along with broader and deeper phylogenetic coverage for scoring of eukaryotic, prokaryotic, and viral genomes. Molecular Biology and Evolution, 38(10), 4647–4654. https://doi.org/10.1093/molbev/msab199 
+Mikheenko, A., Prjibelski, A., Saveliev, V., Antipov, D., & Gurevich, A. (2018). Versatile Genome Assembly evaluation with Quast-LG. Bioinformatics, 34(13), i142–i150. https://doi.org/10.1093/bioinformatics/bty266 
+Prjibelski, A., Antipov, D., Meleshko, D., Lapidus, A., & Korobeynikov, A. (2020). Using Spades de Novo Assembler. Current Protocols in Bioinformatics, 70(1). https://doi.org/10.1002/cpbi.102 
+Seemann, T. (2014). Prokka: Rapid Prokaryotic Genome Annotation. Bioinformatics, 30(14), 2068–2069. https://doi.org/10.1093/bioinformatics/btu153 
