@@ -9,13 +9,9 @@
 Andrew Ricketts
 
 ## Background
-
 Four mystery DNA sequences were provided that represent two different bacterial individuals, two files per bacterium. The data was provided in FASTQ files and will be processed to construct the genome of the bacteria to identify the genus and species. 
-
 ## Methods
-
 The data was provided via the mystery bacterial genome tutorial. The files are 250bp paired-end Illumina HiSeq 2500 reads. The analysis was conducted on the RON server. 
-
 ### FastQC
 FastQC runs a quality control of provided fastq files on both forward and reverse reads separately. The ouput of the program is an html file for each fastq file which can be accessed through a web browser. It provides multiple statistics and blots to show average quality and gc content of reads. 
 ### Trimmomatic
@@ -37,17 +33,16 @@ makeblastdb is a program which creates a local database of seqeunce data to quic
 One option for the blastn program is one against the local database. A gene or RNA seqeunce in a fasta file can be provided into the program which will compare the provided sequence with that of other organisms in the database. The output type must be provided, here a tsv file was used. Likely organism IDs are provided in the output.
 #### Entire Assembly BLAST
 The authors of the tutorial provided the blob_blast.sh program which BLAST's the entire genome against the local database and prepares a file which can later be used in the blob tools program. The input is the full genome fasta file and outputs a megablast.out file. 
-### BWA
-
-### Samtools
-
+### BWA and Samtools
+BWA is a read mapping program, meaning reads are aligned to a given genome assembly and analyses the amount of reads (depth) at each position. The input is the reference genome assembly, here it was the assembled genomes, and the trimmed forward and reverse reads. The output is a sam file which is then inputted into samtools to be converted into a bam file, a binary version of a sam file. 
 ### Blobtools
-
+Blobtools is a group of mutliple programs which can help visualize different parts of the genome like coverage and GC content. THe programs utilize the bam file and local blast file to construct the graphs. 
 ### Filter Contigs
-
+filter_contigs_by_list.py was a program provided by the authors which filters and gets rid of contigs which don't fit set criteria for the genome. Grep is used to create a list of contigs to keep from one of the blobtools files in a new txt file. The genome fasta file and the txt file are provided into the program to create a new fasta file with only the contigs kept. 
 ### UniVec BLAST 
-
+UniVec is a database of DNA sequences of various vectors. blastn takes the filtered fasta file and compares it to the UniVec database to check for contamination. The ouptut is a .6 file. 
 
 ## Findings
 
 ## References
+
