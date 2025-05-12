@@ -154,12 +154,20 @@ sleep 5
 mkdir $data../prokka_output/
 
 prokka="$data../prokka_output/"
+o=1
 
-for item in $spadesout*contigs.fasta
+for item in $(ls $spadesout)
  do
-  prokka $item --outdir $prokka --force --cpus 24 --mincontiglen 200
-  mv "$prokka"PROKKA* mv "$item"PROKKA*
-  mv "$item"PROKKA* $prokka
+  if [[ "$item" == *contigs.fasta ]]
+  then
+    for file in $spadesout*contigs.fasta
+     do
+      if [[ "$file" == *$item ]]
+       then
+        prokka $file --outdir "$prokka$item/" --force --cpus 24 --mincontiglen 200
+      fi
+    done
+  fi
   sleep 5
 done
 
@@ -168,12 +176,15 @@ sleep 5
 mkdir $data../protein_abundances
 
 protein_ab="$data../protein_abundances/"
+m=1
 
-for item in $prokka*.gff
+for item in $prokka*/*.gff
  do
+  fasta=$(ls $spadesout*contigs.fasta | head -n"$m" | tail -n1)
   grep -o "product=.*" $item | sed 's/product=//g' | sort | uniq -c | sort -nr > protein_abundances.txt
-  mv protein_abundances.txt "$item"_protein_abundances.txt
-  mv "$item"_protein_abundances.txt $protein_ab
+  mv protein_abundances.txt "$fasta"_protein_abundances.txt
+  mv "$fasta"_protein_abundances.txt $protein_ab
+  m=$(($m + 1))
   sleep 5
 done
 
@@ -186,12 +197,15 @@ sleep 5
 mkdir $data../16S_sequences
 
 sixtS_seq="$data../16S_sequences/"
+n=1
 
-for item in $prokka*.ffn
+for item in $prokka*/*.ffn
  do
+  fasta=$(ls $spadesout*contigs.fasta | head -n"$n" | tail -n1)
   extract_sequences "16S ribosomal RNA" $item > 16S_sequence.fasta
-  mv 16S_sequence.fasta "$item"_16S_sequence.fasta
-  mv "$item"_16S_sequence.fasta $sixtS_seq
+  mv 16S_sequence.fasta "$fasta"_16S_sequence.fasta
+  mv "$fasta"_16S_sequence.fasta $sixtS_seq
+  n=$(($n + 1))
   sleep 5
 done
 
@@ -399,7 +413,9 @@ for item in $blob_tax*
   blastn -reward 1 -penalty -5 -gapopen 3 -gapextend 3 -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000 -query "$assem"_filtered.fasta -subject $univec -outfmt 6 -out genome_vs_univec.6
   mv "$assem"_contigs_to_keep_len500_cov20.txt $kept_con
   mv "$assem"_filtered.fasta $filt_asm
-  mv *genome_vs_univec.6* $final
+  mv genome_vs_univec.6 "$assem"_genome_vs_univec.6
+  mv "$assem"_genome_vs_univec.6 $final
   e=$(($e +1))
   sleep 5
 done
+
