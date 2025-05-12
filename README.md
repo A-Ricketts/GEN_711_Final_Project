@@ -16,8 +16,8 @@ The data was provided via the mystery bacterial genome tutorial. The files are 2
 FastQC runs a quality control of provided fastq files on both forward and reverse reads separately. The ouput of the program is an html file for each fastq file which can be accessed through a web browser. It provides multiple statistics and blots to show average quality and gc content of reads. 
 ### Trimmomatic
 Trimmomatic trims off low quality bases, typically near the ends of reads, and adapter sequnces from the reads. Fastq files of both forward and reverse reads are provided as the input. The ouput is 4 fastq files: two files for the paired forward and reverse reads; and two unpaired files for both forward and reverse. 
-### Spades
-Spades is a genome assembler best used for bacteria. The four trimmed sequence files are inputted into the program which then aligns the reads and attempts to construct a genome. The output is multiple versions of a contigs fasta file which has the assembeled contigs. Multiple contigs are often produced when they cannot link with other contigs or there is contamination. 
+### SPAdes
+SPAdes is a genome assembler best used for bacteria. The four trimmed sequence files are inputted into the program which then aligns the reads and attempts to construct a genome. The output is multiple versions of a contigs fasta file which has the assembeled contigs. Multiple contigs are often produced when they cannot link with other contigs or there is contamination. 
 ### QUAST
 QUAST assesses quality of the genome asembly. It looks at genome fragmentation, whether one or a few contigs is prepresentative of the genome or if there are manby small contigs. It intakes the contigs fasta file and provides quality reports in multiple file types. 
 ### BUSCO
@@ -45,4 +45,7 @@ UniVec is a database of DNA sequences of various vectors. blastn takes the filte
 ## Findings
 
 ## References
-
+Alla Mikheenko, Andrey Prjibelski, Vladislav Saveliev, Dmitry Antipov, Alexey Gurevich, Versatile genome assembly evaluation with QUAST-LG, Bioinformatics (2018) 34 (13): i142-i150. doi: 10.1093/bioinformatics/bty266
+Andrews, S. (2010). FastQC:  A Quality Control Tool for High Throughput Sequence Data
+Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: A flexible trimmer for Illumina Sequence Data. Bioinformatics, btu170.
+Prjibelski, A., Antipov, D., Meleshko, D., Lapidus, A., & Korobeynikov, A. (2020). Using SPAdes de novo assembler. Current Protocols in Bioinformatics, 70, e102. doi: 10.1002/cpbi.102
