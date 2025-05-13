@@ -10,6 +10,8 @@ Andrew Ricketts
 
 ## Background
 Four mystery DNA sequences were provided that represent two different bacterial individuals, two files per bacterium. The data was provided in FASTQ files and will be processed to construct the genome of the bacteria to identify the genus and species. 
+* 01_S39_L001
+* 05_S61_L001
 ## Methods
 The data was provided via the mystery bacterial genome tutorial. The files are 250bp paired-end Illumina HiSeq 2500 reads. The analysis was conducted on the RON server. 
 ### FastQC
@@ -42,6 +44,12 @@ filter_contigs_by_list.py was a program provided by the authors which filters an
 ### UniVec BLAST 
 UniVec is a database of DNA sequences of various vectors. blastn takes the filtered fasta file and compares it to the UniVec database to check for contamination. The ouptut is a .6 file. 
 ## Findings
+### 01_S39_L001
+<img width="1376" alt="Screenshot 2025-05-12 at 9 35 48 PM" src="https://github.com/user-attachments/assets/44806a4c-f917-4432-ac20-6801b9d28023" />
+Figure 1. Complete assembled and annotated genome of 01_S39_L001 identified as Veillonella parvula
+### 05_S61_L001
+<img width="1369" alt="Screenshot 2025-05-12 at 9 36 36 PM" src="https://github.com/user-attachments/assets/10f72335-c8bd-4b02-9918-bfffdbb0b2cf" />
+Figure 1. Complete assembled and annotated genome of 05_S61_L001 identified as Escherichia coli strain 2014C-3075
 
 ## References
 Andrews, S. (2010).  Quality Control Tool for High Throughput Sequence Data. Babraham Bioinformatics - FastQC a quality control tool for high throughput sequence data. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ 
